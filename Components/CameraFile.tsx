@@ -1,5 +1,7 @@
+import React from 'react'
 import { Camera, CameraType } from 'expo-camera'
 import { useRef, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   Button,
   Dimensions,
@@ -8,6 +10,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import CapturedImages from './CapturedImages'
+// import CameraFile from './CameraFile'
 
 const windowDimensions = Dimensions.get('window')
 
@@ -37,13 +41,23 @@ export default function CameraFile() {
     if (cameraRef.current) {
       const { uri } = await cameraRef.current.takePictureAsync()
       console.log(uri)
+      // Store the image URI using AsyncStorage
+      try {
+        const storedURIs = await AsyncStorage.getItem('capturedImages')
+        let updatedURIs = []
+        if (storedURIs !== null) {
+          updatedURIs = JSON.parse(storedURIs)
+        }
+        updatedURIs.push(uri)
+        await AsyncStorage.setItem(
+          'capturedImages',
+          JSON.stringify(updatedURIs),
+        )
+        console.log('Image stored successfully')
+      } catch (error) {
+        console.log('Error storing image:', error)
+      }
     }
-  }
-
-  function toggleCameraType() {
-    setType((current) =>
-      current === CameraType.back ? CameraType.front : CameraType.back,
-    )
   }
 
   return (
@@ -55,14 +69,12 @@ export default function CameraFile() {
     >
       <Camera style={styles.camera} type={cameraType} ref={cameraRef}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Text style={styles.text}>Flip Camera</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={takePicture}>
-            <Text style={styles.text}>Take Picture</Text>
+            <Text style={styles.text}>capture</Text>
           </TouchableOpacity>
         </View>
       </Camera>
+      <CapturedImages />
     </View>
   )
 }
@@ -74,19 +86,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   camera: {
-    flex: 1,
+    width: windowDimensions.width,
+    height: windowDimensions.width, // Set height equal to width to make it square
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'flex-end',
-    margin: 20,
+    marginTop: 325,
   },
   button: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'red',
     padding: 15,
-    borderRadius: 10,
-    marginBottom: 20,
+    borderRadius: 50, // to make it a circle
+    borderWidth: 2,
+    borderColor: 'white',
   },
   text: {
     color: 'white',
