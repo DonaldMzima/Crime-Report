@@ -1,10 +1,15 @@
 import { StyleSheet } from 'react-native'
-import CameraFile from './Components/CameraFile'
+
+import * as React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import Nav from './Components/Nav'
 
 export default function App() {
   return (
     <>
-      <CameraFile />
+      <NavigationContainer>
+        <Nav />
+      </NavigationContainer>
     </>
   )
 }
