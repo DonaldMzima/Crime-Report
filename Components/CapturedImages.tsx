@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import ReportForm from './IncidentReportForm'
 
 const windowWidth = Dimensions.get('window').width
 
@@ -41,6 +42,7 @@ export default function CapturedImages() {
           ))}
         </View>
       )}
+      <ReportForm />
     </ScrollView>
   )
 }
