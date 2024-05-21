@@ -1,17 +1,21 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { NavigationContainer } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import HomePage from './HomePage'
 import ReportForm from './IncidentReportForm'
 import CameraFile from './CameraFile'
 import { View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import BackButton from './Buttons/BackButton'
 
 const Tab = createBottomTabNavigator()
 
 const AnotherScreen = () => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
     {/* <Text>Another Screen</Text> */}
+    <View>
+      <BackButton />
+    </View>
   </View>
 )
 
