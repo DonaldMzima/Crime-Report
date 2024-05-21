@@ -6,9 +6,9 @@ import {
   StyleSheet,
   Text,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import ReportForm from './IncidentReportForm'
 
 const windowWidth = Dimensions.get('window').width
 
@@ -29,6 +29,11 @@ export default function CapturedImages() {
     getStoredImages()
   }, [])
 
+  const handleReportPress = (uri: string) => {
+    console.log('Report pressed for image:', uri)
+    // Add your reporting logic here
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {imageURIs.length === 0 ? (
@@ -38,11 +43,16 @@ export default function CapturedImages() {
           {imageURIs.map((uri, index) => (
             <View key={index} style={styles.imageContainer}>
               <Image source={{ uri }} style={styles.image} />
+              <TouchableOpacity
+                style={styles.reportButton}
+                onPress={() => handleReportPress(uri)}
+              >
+                <Text style={styles.reportButtonText}>Report</Text>
+              </TouchableOpacity>
             </View>
           ))}
         </View>
       )}
-      <ReportForm />
     </ScrollView>
   )
 }
@@ -63,10 +73,25 @@ const styles = StyleSheet.create({
   imageContainer: {
     marginVertical: 10,
     width: '49%', // Adjust the width to fit two images in a row
+    position: 'relative', // Required for positioning the button
   },
   image: {
     width: '100%', // Take full width of the container
     height: 200,
     borderRadius: 10,
+  },
+  reportButton: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -50 }, { translateY: -50 }],
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    padding: 10,
+    borderRadius: 5,
+  },
+  reportButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 })
