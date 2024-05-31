@@ -1,5 +1,5 @@
-import React from 'react'
-import { Camera, CameraType } from 'expo-camera'
+import React, { useEffect } from 'react'
+import { Camera } from 'expo-camera'
 import { useRef, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
@@ -11,32 +11,40 @@ import {
   View,
 } from 'react-native'
 import CapturedImages from './CapturedImages'
+import { CameraType } from 'expo-camera/build/legacy/Camera.types'
 // import CameraFile from './CameraFile'
 
 const windowDimensions = Dimensions.get('window')
 
 export default function CameraFile() {
   const [cameraType, setType] = useState(CameraType.back)
-  const [permission, requestPermission] = Camera.useCameraPermissions()
-  const cameraRef = useRef<Camera>(null) // Define cameraRef with type Camera
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const cameraRef = useRef<any>(Camera) // Define cameraRef with type Camera
+Camera
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.getCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
 
-  if (!permission) {
-    // Camera permissions are still loading
-    return <View />
+  const requestPermission = async () => {
+    const { status } = await Camera.requestCameraPermissionsAsync();
+    setHasPermission(status === 'granted');
+  };
+
+  if (hasPermission === null) {
+    return <View><Text>Checking permissions...</Text></View>;
   }
 
-  if (!permission.granted) {
-    // Camera permissions are not granted yet
+  if (hasPermission === false) {
     return (
-      <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>
-          We need your permission to show the camera
-        </Text>
-        <Button onPress={requestPermission} title="grant permission" />
+      <View>
+        <Text>No access to camera</Text>
+        <Button title="Request Permission" onPress={requestPermission} />
       </View>
-    )
+    );
   }
-
   const takePicture = async () => {
     if (cameraRef.current) {
       const { uri } = await cameraRef.current.takePictureAsync()
@@ -67,13 +75,13 @@ export default function CameraFile() {
         { width: windowDimensions.width, height: windowDimensions.height },
       ]}
     >
-      <Camera style={styles.camera} type={cameraType} ref={cameraRef}>
+      {/* <Camera style={styles.camera} type={cameraType} ref={cameraRef}> */}
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={takePicture}>
             <Text style={styles.text}>capture</Text>
           </TouchableOpacity>
         </View>
-      </Camera>
+      {/* </Camera> */}
       <CapturedImages />
     </View>
   )

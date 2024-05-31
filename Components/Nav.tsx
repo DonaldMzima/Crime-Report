@@ -14,12 +14,12 @@ const AnotherScreen = () => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
     {/* <Text>Another Screen</Text> */}
     <View>
-      <BackButton />
+      {/* <BackButton /> */}
     </View>
   </View>
 )
 
-const App = () => {
+export const AppRoot = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -58,4 +58,3 @@ const App = () => {
   )
 }
 
-export default App

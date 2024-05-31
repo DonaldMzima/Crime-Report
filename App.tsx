@@ -1,14 +1,17 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import Nav from './Components/Nav'
+import { AppRoot } from './Components/Nav'
 
 export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Nav />
+        <AppRoot />
+        {/* <View style={{backgroundColor:"red", height:900}}>
+
+        </View> */}
       </NavigationContainer>
     </>
   )
