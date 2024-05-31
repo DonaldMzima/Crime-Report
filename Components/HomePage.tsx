@@ -11,10 +11,10 @@ const HomePage = ({ navigation }: any) => {
     <View style={styles.container}>
       <Text style={styles.title}>Crime Reporting App</Text>
 
-      <Tab.Navigator>
+      {/* <Tab.Navigator>
         <Tab.Screen name="Home" component={CameraFile} />
         <Tab.Screen name="Settings" component={ReportForm} />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
 
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Report Crime</Text>
