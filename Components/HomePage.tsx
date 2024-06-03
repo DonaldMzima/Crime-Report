@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import CameraFile from './CameraFile'
 import ReportForm from './IncidentReportForm'
 
-const HomePage = ({ navigation }: any) => {
+const HomePage = () => {
   const Tab = createBottomTabNavigator()
 
   return (

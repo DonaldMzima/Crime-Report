@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Camera } from 'expo-camera'
+import { Camera, CameraView } from 'expo-camera'
 import { useRef, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
@@ -75,13 +75,13 @@ Camera
         { width: windowDimensions.width, height: windowDimensions.height },
       ]}
     >
-      {/* <Camera style={styles.camera} type={cameraType} ref={cameraRef}> */}
+      <CameraView style={styles.camera}   ref={cameraRef}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={takePicture}>
             <Text style={styles.text}>capture</Text>
           </TouchableOpacity>
         </View>
-      {/* </Camera> */}
+        </CameraView>
       <CapturedImages />
     </View>
   )
