@@ -1,11 +1,12 @@
-import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Button } from 'react-native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import CameraFile from './CameraFile'
-import ReportForm from './IncidentReportForm'
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Button } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import CameraFile from "./CameraFile";
+import ReportForm from "./IncidentReportForm";
+import BackButton from "./Buttons/BackButton";
 
 const HomePage = () => {
-  const Tab = createBottomTabNavigator()
+  const Tab = createBottomTabNavigator();
 
   return (
     <View style={styles.container}>
@@ -15,37 +16,37 @@ const HomePage = () => {
         <Tab.Screen name="Home" component={CameraFile} />
         <Tab.Screen name="Settings" component={ReportForm} />
       </Tab.Navigator> */}
-
+      <BackButton />
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Report Crime</Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f0f0f0",
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
   },
   button: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: "#4CAF50",
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
-})
+});
 
-export default HomePage
+export default HomePage;

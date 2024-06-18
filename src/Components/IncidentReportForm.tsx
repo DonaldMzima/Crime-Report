@@ -1,21 +1,21 @@
-import React, { useState } from 'react'
-import { View, TextInput, Button, StyleSheet, ScrollView } from 'react-native'
+import React, { useState } from "react";
+import { View, TextInput, Button, StyleSheet, ScrollView } from "react-native";
 
 const ReportForm = () => {
-  const [reportDateTime, setReportDateTime] = useState('')
-  const [incidentDateTime, setIncidentDateTime] = useState('')
-  const [position, setPosition] = useState('')
-  const [firstName, setFirstName] = useState('')
-  const [middleName, setMiddleName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [incidentLocation, setIncidentLocation] = useState('')
-  const [natureOfIncident, setNatureOfIncident] = useState('')
-  const [incidentDetails, setIncidentDetails] = useState('')
-  const [suspectCharges, setSuspectCharges] = useState('')
-  const [arrested, setArrested] = useState('')
-  const [suspectFirstName, setSuspectFirstName] = useState('')
-  const [suspectLastName, setSuspectLastName] = useState('')
-  const [suspectComments, setSuspectComments] = useState('')
+  const [reportDateTime, setReportDateTime] = useState("");
+  const [incidentDateTime, setIncidentDateTime] = useState("");
+  const [position, setPosition] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [incidentLocation, setIncidentLocation] = useState("");
+  const [natureOfIncident, setNatureOfIncident] = useState("");
+  const [incidentDetails, setIncidentDetails] = useState("");
+  const [suspectCharges, setSuspectCharges] = useState("");
+  const [arrested, setArrested] = useState("");
+  const [suspectFirstName, setSuspectFirstName] = useState("");
+  const [suspectLastName, setSuspectLastName] = useState("");
+  const [suspectComments, setSuspectComments] = useState("");
 
   const handleSubmit = () => {
     // Handle form submission
@@ -36,12 +36,12 @@ const ReportForm = () => {
       suspectFirstName,
       suspectLastName,
       suspectComments,
-    })
-  }
+    });
+  };
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
+    <ScrollView>
+      <View style={styles.container}>
         <TextInput
           style={styles.input}
           placeholder="Report date and time"
@@ -127,10 +127,10 @@ const ReportForm = () => {
           onChangeText={setSuspectComments}
         />
         <Button title="Submit" onPress={handleSubmit} />
-      </ScrollView>
-    </View>
-  )
-}
+      </View>
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -140,9 +140,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     borderRadius: 5,
   },
-})
+});
 
-export default ReportForm
+export default ReportForm;

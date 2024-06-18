@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import {
   View,
   Image,
@@ -7,32 +7,36 @@ import {
   Text,
   Dimensions,
   TouchableOpacity,
-} from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+import ReportForm from "./IncidentReportForm";
 
-const windowWidth = Dimensions.get('window').width
+const windowWidth = Dimensions.get("window").width;
 
 export default function CapturedImages() {
-  const [imageURIs, setImageURIs] = useState([])
+  const [imageURIs, setImageURIs] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getStoredImages = async () => {
       try {
-        const storedURIs = await AsyncStorage.getItem('capturedImages')
+        const storedURIs = await AsyncStorage.getItem("capturedImages");
         if (storedURIs !== null) {
-          setImageURIs(JSON.parse(storedURIs))
+          setImageURIs(JSON.parse(storedURIs));
         }
       } catch (error) {
-        console.log('Error retrieving images:', error)
+        console.log("Error retrieving images:", error);
       }
-    }
-    getStoredImages()
-  }, [])
+    };
+    getStoredImages();
+  }, []);
 
   const handleReportPress = (uri: string) => {
-    console.log('Report pressed for image:', uri)
-    // Add your reporting logic here
-  }
+    console.log("Report pressed for image:", uri);
+    //@ts-ignore
+    navigation.navigate("ReportForm", { imageUri: uri });
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -53,45 +57,46 @@ export default function CapturedImages() {
           ))}
         </View>
       )}
+      <ReportForm />
     </ScrollView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingVertical: 20,
   },
   imagesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
     width: windowWidth - 20,
   },
   imageContainer: {
     marginVertical: 10,
-    width: '49%', // Adjust the width to fit two images in a row
-    position: 'relative', // Required for positioning the button
+    width: "49%", // Adjust the width to fit two images in a row
+    position: "relative", // Required for positioning the button
   },
   image: {
-    width: '100%', // Take full width of the container
+    width: "100%", // Take full width of the container
     height: 200,
     borderRadius: 10,
   },
   reportButton: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
     transform: [{ translateX: -50 }, { translateY: -50 }],
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
     padding: 10,
     borderRadius: 5,
   },
   reportButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
   },
-})
+});
