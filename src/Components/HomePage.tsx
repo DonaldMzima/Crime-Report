@@ -1,23 +1,23 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Button } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import CameraFile from "./CameraFile";
-import ReportForm from "./IncidentReportForm";
-import BackButton from "./Buttons/BackButton";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 const HomePage = () => {
-  const Tab = createBottomTabNavigator();
+  const navigation = useNavigation();
+
+  const handleReportPress = () => {
+    //@ts-ignore
+    navigation.navigate("CameraFile");
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Crime Reporting App</Text>
 
-      {/* <Tab.Navigator>
-        <Tab.Screen name="Home" component={CameraFile} />
-        <Tab.Screen name="Settings" component={ReportForm} />
-      </Tab.Navigator> */}
-      <BackButton />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handleReportPress()}
+      >
         <Text style={styles.buttonText}>Report Crime</Text>
       </TouchableOpacity>
     </View>
