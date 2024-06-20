@@ -40,94 +40,92 @@ const ReportForm = () => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <TextInput
-          style={styles.input}
-          placeholder="Report date and time"
-          value={reportDateTime}
-          onChangeText={setReportDateTime}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Date and time when incident occurred"
-          value={incidentDateTime}
-          onChangeText={setIncidentDateTime}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Position"
-          value={position}
-          onChangeText={setPosition}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="First Name"
-          value={firstName}
-          onChangeText={setFirstName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Middle Name"
-          value={middleName}
-          onChangeText={setMiddleName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Last Name"
-          value={lastName}
-          onChangeText={setLastName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Incident Location"
-          value={incidentLocation}
-          onChangeText={setIncidentLocation}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Nature of Incident"
-          value={natureOfIncident}
-          onChangeText={setNatureOfIncident}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Incident Details"
-          value={incidentDetails}
-          onChangeText={setIncidentDetails}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Suspect Charges"
-          value={suspectCharges}
-          onChangeText={setSuspectCharges}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Arrested?"
-          value={arrested}
-          onChangeText={setArrested}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Suspect First Name"
-          value={suspectFirstName}
-          onChangeText={setSuspectFirstName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Suspect Last Name"
-          value={suspectLastName}
-          onChangeText={setSuspectLastName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Further Comments"
-          value={suspectComments}
-          onChangeText={setSuspectComments}
-        />
-        <Button title="Submit" onPress={handleSubmit} />
-      </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder="Report date and time"
+        value={reportDateTime}
+        onChangeText={setReportDateTime}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Date and time when incident occurred"
+        value={incidentDateTime}
+        onChangeText={setIncidentDateTime}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Position"
+        value={position}
+        onChangeText={setPosition}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="First Name"
+        value={firstName}
+        onChangeText={setFirstName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Middle Name"
+        value={middleName}
+        onChangeText={setMiddleName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Last Name"
+        value={lastName}
+        onChangeText={setLastName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Incident Location"
+        value={incidentLocation}
+        onChangeText={setIncidentLocation}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Nature of Incident"
+        value={natureOfIncident}
+        onChangeText={setNatureOfIncident}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Incident Details"
+        value={incidentDetails}
+        onChangeText={setIncidentDetails}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Suspect Charges"
+        value={suspectCharges}
+        onChangeText={setSuspectCharges}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Arrested?"
+        value={arrested}
+        onChangeText={setArrested}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Suspect First Name"
+        value={suspectFirstName}
+        onChangeText={setSuspectFirstName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Suspect Last Name"
+        value={suspectLastName}
+        onChangeText={setSuspectLastName}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Further Comments"
+        value={suspectComments}
+        onChangeText={setSuspectComments}
+      />
+      <Button title="Submit" onPress={handleSubmit} />
     </ScrollView>
   );
 };
