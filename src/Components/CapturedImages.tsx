@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Image,
-  ScrollView,
   StyleSheet,
   Text,
   Dimensions,
@@ -10,11 +9,10 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import ReportForm from "./IncidentReportForm";
 
 const windowWidth = Dimensions.get("window").width;
 
-export default function CapturedImages() {
+const CapturedImages = () => {
   const [imageURIs, setImageURIs] = useState([]);
   const navigation = useNavigation();
 
@@ -32,14 +30,14 @@ export default function CapturedImages() {
     getStoredImages();
   }, []);
 
-  const handleReportPress = (uri: string) => {
+  const handleReportPress = (uri: any) => {
     console.log("Report pressed for image:", uri);
     //@ts-ignore
-    navigation.navigate("ReportForm", { imageUri: uri });
+    navigation.navigate("ReportCrime", { imageUri: uri });
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View>
       {imageURIs.length === 0 ? (
         <Text>No images captured yet</Text>
       ) : (
@@ -57,10 +55,9 @@ export default function CapturedImages() {
           ))}
         </View>
       )}
-      <ReportForm />
-    </ScrollView>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -77,11 +74,11 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     marginVertical: 10,
-    width: "49%", // Adjust the width to fit two images in a row
-    position: "relative", // Required for positioning the button
+    width: "49%",
+    position: "relative",
   },
   image: {
-    width: "100%", // Take full width of the container
+    width: "100%",
     height: 200,
     borderRadius: 10,
   },
@@ -100,3 +97,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export default CapturedImages;
